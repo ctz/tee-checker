@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <CheckBoxPreference
+        android:key="mobicore-present"
+        android:selectable="false"
+        android:title="@string/mobicore_supported" />
+    <CheckBoxPreference
+        android:key="mobicore-available"
+        android:selectable="false"
+        android:title="@string/mobicore_available" />
+    <CheckBoxPreference
+        android:key="mobicore-client"
+        android:selectable="false"
+        android:title="@string/mobicore_client_loadable" />
+
+    <EditTextPreference
+        android:key="mobicore-version"
+        android:selectable="false"
+        android:title="@string/mobicore_version" />
+
+</PreferenceScreen>

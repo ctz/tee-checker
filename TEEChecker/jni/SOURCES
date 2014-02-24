@@ -1,0 +1,12 @@
+File sources:
+
+- mcUuid.h
+- MobiCoreDriverApi.h
+- mcVersionInfo.h
+
+are from https://android.googlesource.com/platform/hardware/samsung_slsi/exynos5
+at e6c4cd2f1e766609ee5ae538c5c78907d8313cb9.
+
+- libMcClient.so
+
+is taken from a 4.2.something era S3.

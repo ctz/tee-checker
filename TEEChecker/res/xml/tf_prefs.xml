@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <CheckBoxPreference
+        android:selectable="false"
+        android:key="tf-present"
+        android:title="@string/tf_supported" />
+
+    <CheckBoxPreference
+        android:selectable="false"
+        android:key="tf-available"
+        android:title="@string/tf_available" />
+
+	<CheckBoxPreference
+        android:selectable="false"
+        android:key="tf-sst-available"
+        android:title="@string/tf_sst_available" />
+    
+    
+</PreferenceScreen>

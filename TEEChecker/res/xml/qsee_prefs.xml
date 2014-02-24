@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <CheckBoxPreference
+        android:selectable="false"
+        android:key="qsee-present"
+        android:title="@string/qsee_supported" />
+
+    <CheckBoxPreference
+        android:selectable="false"
+        android:key="qsee-available"
+        android:title="@string/qsee_available" />
+    
+</PreferenceScreen>

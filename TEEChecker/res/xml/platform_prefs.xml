@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <CheckBoxPreference
+        android:selectable="false"
+        android:key="keystore-supported"
+        android:title="@string/platform_keystore_supported" />
+    <EditTextPreference
+        android:selectable="false"
+        android:key="keystore-supported-keytypes"
+        android:title="@string/platform_keystore_supported_types"
+        android:summary="(none)"/>
+    <CheckBoxPreference
+        android:selectable="false"
+        android:key="keystore-hardware"
+        android:title="@string/platform_keystore_hardware" />
+    <EditTextPreference
+        android:selectable="false"
+        android:key="keystore-hardware-keytypes"
+        android:title="@string/platform_keystore_hardware_types"
+        android:summary="(none)"/>
+
+</PreferenceScreen>
