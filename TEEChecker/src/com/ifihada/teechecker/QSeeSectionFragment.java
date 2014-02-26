@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.PreferenceFragment;
 
-public class QSeeSectionFragment extends PreferenceFragment
+public class QSeeSectionFragment extends CheckerFragment
 {
   private static final String TAG = "QSEESectionFragment";
 
@@ -23,17 +23,12 @@ public class QSeeSectionFragment extends PreferenceFragment
     String qseeDetectResult = detectQSEE();
     boolean qseeAvailable = checkQSEEAvailable();
     
-    CheckBoxPreference qsSupp = ((CheckBoxPreference) findPreference("qsee-present"));
-    
-    qsSupp.setChecked(qseeDetectResult != null);
-    qsSupp.setSummary(qseeDetectResult != null ? qseeDetectResult : "");
-    
-    CheckBoxPreference qsAvail = ((CheckBoxPreference) findPreference("qsee-available"));
-    if (qseeDetectResult == null)
-      qsAvail.setEnabled(false);
-    else
-      qsAvail.setChecked(qseeAvailable);
-      
+    result("qsee-present",
+           qseeDetectResult != null,
+           qseeDetectResult != null ? qseeDetectResult : "");
+    result("qsee-available",
+           qseeAvailable,
+           "");  
   }
   
   private boolean checkQSEEAvailable()

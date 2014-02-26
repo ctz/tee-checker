@@ -9,14 +9,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
-import android.preference.EditTextPreference;
-import android.preference.CheckBoxPreference;
-import android.preference.PreferenceFragment;
 import android.util.Log;
 import android.security.IKeystoreService;
 import android.security.KeyChain;
 
-public class PlatformSectionFragment extends PreferenceFragment
+public class PlatformSectionFragment extends CheckerFragment
 {
   private static final String TAG = "PlatformSectionFragment";
 
@@ -30,10 +27,13 @@ public class PlatformSectionFragment extends PreferenceFragment
 
   public void fill()
   {
-    ((CheckBoxPreference) findPreference("keystore-supported")).setChecked(hasKeystoreApi());
-    ((EditTextPreference) findPreference("keystore-supported-keytypes")).setSummary(getUsableTypes());
-    ((CheckBoxPreference) findPreference("keystore-hardware")).setChecked(hasKeystoreHardware());
-    ((EditTextPreference) findPreference("keystore-hardware-keytypes")).setSummary(getHardwareTypes());
+    result("device", String.format("%s %s (%s branded)", Build.MANUFACTURER, Build.MODEL, Build.BRAND));
+    result("version", String.format("%s (%s)", Build.VERSION.RELEASE, Build.DISPLAY));
+    
+    result("keystore-supported", hasKeystoreApi(), "");
+    result("keystore-keytypes", getUsableTypes());
+    result("keystore-hw", hasKeystoreHardware(), "");
+    result("keystore-hw-keytypes", getHardwareTypes());
   }
 
   private IKeystoreService getKeystore()
@@ -77,6 +77,9 @@ public class PlatformSectionFragment extends PreferenceFragment
       if (isKeyTypeHardwareBacked(kt))
         usable.add(kt);
     }
+    
+    if (usable.size() == 0)
+      return "(none)";
 
     return join(usable);
   }
@@ -93,6 +96,9 @@ public class PlatformSectionFragment extends PreferenceFragment
       if (KeyChain.isKeyAlgorithmSupported(kt))
         usable.add(kt);
     }
+    
+    if (usable.size() == 0)
+      return "(none)";
 
     return join(usable);
   }

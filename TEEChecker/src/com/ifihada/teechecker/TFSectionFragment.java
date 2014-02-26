@@ -7,7 +7,7 @@ import android.preference.CheckBoxPreference;
 import android.preference.PreferenceFragment;
 import android.util.Log;
 
-public class TFSectionFragment extends PreferenceFragment
+public class TFSectionFragment extends CheckerFragment
 {
   private static final String TAG = "TFSectionFragment";
 
@@ -22,32 +22,33 @@ public class TFSectionFragment extends PreferenceFragment
   public void fill()
   {
     String tfDetectResult = detectTF();
-    boolean tfAvailable = checkTFAvailable();
+    String tfAvailable = checkTFAvailable();
     String sstAvailable = checkSSTAvailable();
     
-    CheckBoxPreference tfSupp = ((CheckBoxPreference) findPreference("tf-present"));
-    CheckBoxPreference tfAvail = ((CheckBoxPreference) findPreference("tf-available"));
-    CheckBoxPreference sstAvail = ((CheckBoxPreference) findPreference("tf-sst-available"));
-    
-    tfSupp.setChecked(tfDetectResult != null);
-    tfSupp.setSummary(tfDetectResult != null ? tfDetectResult : "");
-    
+    result("tf-present",
+           tfDetectResult != null,
+           tfDetectResult);
+    result("tf-available",
+           tfAvailable != null,
+           tfAvailable);
+    result("tf-sst-available",
+           sstAvailable != null,
+           sstAvailable);
+
     if (tfDetectResult == null)
     {
-      tfAvail.setEnabled(false);
-      sstAvail.setEnabled(false);
-    } else {
-      tfAvail.setChecked(tfAvailable);
-      sstAvail.setChecked(sstAvailable != null);
-      if (sstAvailable != null)
-        sstAvail.setSummary(sstAvailable);
+      notAvailable("tf-available");
+      notAvailable("tf-sst-available");
     }
   }
   
-  private boolean checkTFAvailable()
+  private String checkTFAvailable()
   {
     File f = new File("/dev/tf_driver");
-    return f.canRead() && f.canWrite();
+    if (f.canRead() && f.canWrite())
+      return "/dev/tf_driver is read-write for us";
+    else
+      return null;
   }
   
   private String detectTF()

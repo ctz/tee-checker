@@ -52,6 +52,7 @@ public class CheckerActivity extends Activity implements ActionBar.TabListener
 
     // Set up the ViewPager with the sections adapter.
     mViewPager = (ViewPager) findViewById(R.id.pager);
+    mViewPager.setOffscreenPageLimit(16);
     mViewPager.setAdapter(mSectionsPagerAdapter);
 
     // When swiping between different sections, select the corresponding
@@ -93,6 +94,26 @@ public class CheckerActivity extends Activity implements ActionBar.TabListener
   @Override
   public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction)
   {
+  }
+  
+  @Override
+  public boolean onCreateOptionsMenu(Menu m)
+  {
+    super.onCreateOptionsMenu(m);
+    getMenuInflater().inflate(R.menu.main, m);
+    return true;
+  }
+  
+  @Override
+  public boolean onOptionsItemSelected(MenuItem mi)
+  {
+    if (mi != null && mi.getItemId() == R.id.menu_send_results)
+    {
+      CheckerResults.send(this);
+      return true;
+    }
+    
+    return false;
   }
 
   /**

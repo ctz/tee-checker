@@ -2,26 +2,24 @@
 <resources>
 
     <string name="app_name">TEE Checker</string>
- 
-	<string name="title_platform">Platform</string>
+    <string name="title_platform">Platform</string>
     <string name="title_mobicore">MobiCore/t-base</string>
     <string name="title_qsee">Qualcomm SEE</string>
     <string name="title_tf">Trusted Logic</string>
-    
+    <string name="device">Device</string>
+    <string name="version">Version</string>
+    <string name="platform_keystore_title">Android Keystore API</string>
     <string name="platform_keystore_supported">Keystore supported?</string>
     <string name="platform_keystore_supported_types">Key types</string>
     <string name="platform_keystore_hardware">Backed by hardware?</string>
     <string name="platform_keystore_hardware_types">Hardware key types</string>
-    
     <string name="mobicore_supported">MobiCore/t-base present?</string>
     <string name="mobicore_available">Available to this app?</string>
     <string name="mobicore_client_loadable">Client library present?</string>
     <string name="mobicore_version">Version</string>
-    
     <string name="qsee_supported">QSEE present?</string>
     <string name="qsee_available">Available to this app?</string>
-	
-	<string name="tf_supported">Trusted Foundations present?</string>
+    <string name="tf_supported">Trusted Foundations present?</string>
     <string name="tf_available">Available to this app?</string>
     <string name="tf_sst_available">System service library available?</string>
 
