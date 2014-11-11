@@ -16,6 +16,7 @@ import android.security.KeyChain;
 public class PlatformSectionFragment extends CheckerFragment
 {
   private static final String TAG = "PlatformSectionFragment";
+  private static final int NO_ERROR = 1;
 
   @Override
   public void onCreate(Bundle saved)
@@ -133,7 +134,7 @@ public class PlatformSectionFragment extends CheckerFragment
     
     try
     {
-      return svc.is_hardware_backed(kt) != 0;
+      return svc.is_hardware_backed(kt) == NO_ERROR;
     } catch (RemoteException e)
     {
       Log.wtf(TAG, "is_hardware_backed("+kt+") failed", e);
@@ -154,7 +155,7 @@ public class PlatformSectionFragment extends CheckerFragment
 
     try
     {
-      return svc.is_hardware_backed() != 0;
+      return svc.is_hardware_backed() == NO_ERROR;
     } catch (RemoteException e)
     {
       Log.wtf(TAG, "is_hardware_backed() failed", e);
