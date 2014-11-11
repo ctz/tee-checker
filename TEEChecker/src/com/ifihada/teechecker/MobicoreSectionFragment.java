@@ -52,21 +52,28 @@ public class MobicoreSectionFragment extends CheckerFragment
   private String detectMobicore()
   {
     StringBuffer sb = new StringBuffer();
+    int count = 0;
     
     if (new File("/dev/mobicore").exists())
-      sb.append("/dev/mobicore exists");
+    {
+      sb.append("/dev/mobicore");
+      count++;
+    }
     
     if (new File("/dev/mobicore-user").exists())
     {
-      if (sb.length() > 0)
+      if (count != 0)
         sb.append(" and ");
-      sb.append("/dev/mobicore-user exists");
+      sb.append("/dev/mobicore-user");
+      count++;
     }
     
-    if (sb.length() > 0)
-      return sb.toString();
-    else
+    if (count == 0)
       return null;
+    if (count == 1)
+      return sb.toString() + " exists";
+    else
+      return sb.toString() + " exist";
   }
   
   private String checkMobicoreAvailable()
@@ -85,7 +92,10 @@ public class MobicoreSectionFragment extends CheckerFragment
     try
     {
       System.loadLibrary("McClient");
-      return "libMcClient.so present";
+      if (checkMobicoreAvailable() == null)
+        return "libMcClient.so present. That's strange!";
+      else
+        return "libMcClient.so present";
     } catch (UnsatisfiedLinkError e) {
       Log.e(TAG, "cannot find McClient", e);
       return null;
