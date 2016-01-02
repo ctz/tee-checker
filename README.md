@@ -9,4 +9,4 @@ It currently detects:
 * Giesecke & Devrient Mobicore / Trustonic t-base.
 * Qualcomm SEE.
 * Trusted Logic Trusted Foundations.
-
+* NVIDIA/Google Trusted Little Kernel.
