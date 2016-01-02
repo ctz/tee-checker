@@ -6,6 +6,7 @@
     <string name="title_mobicore">MobiCore/t-base</string>
     <string name="title_qsee">Qualcomm SEE</string>
     <string name="title_tf">Trusted Logic</string>
+    <string name="title_tlk">Trusted Little Kernel</string>
     <string name="device">Device</string>
     <string name="version">Version</string>
     <string name="platform_keystore_title">Android Keystore API</string>
@@ -22,5 +23,7 @@
     <string name="tf_supported">Trusted Foundations present?</string>
     <string name="tf_available">Available to this app?</string>
     <string name="tf_sst_available">System service library available?</string>
+    <string name="tlk_supported">Google/NVIDIA Trusted Little Kernel present?</string>
+    <string name="tlk_available">Available to this app?</string>
 
 </resources>

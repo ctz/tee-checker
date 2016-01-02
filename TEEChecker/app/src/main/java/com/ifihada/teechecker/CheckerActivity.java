@@ -138,6 +138,8 @@ public class CheckerActivity extends Activity implements ActionBar.TabListener
         return new QSeeSectionFragment();
       case 3:
         return new TFSectionFragment();
+      case 4:
+        return new TLKSectionFragment();
       default:
         return null;
       }
@@ -146,7 +148,7 @@ public class CheckerActivity extends Activity implements ActionBar.TabListener
     @Override
     public int getCount()
     {
-      return 4;
+      return 5;
     }
 
     @Override
@@ -162,6 +164,8 @@ public class CheckerActivity extends Activity implements ActionBar.TabListener
         return getString(R.string.title_qsee);
       case 3:
         return getString(R.string.title_tf);
+      case 4:
+        return "Trusted Little Kernel";
       }
       return null;
     }
