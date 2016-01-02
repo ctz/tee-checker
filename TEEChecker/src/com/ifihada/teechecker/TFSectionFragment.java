@@ -24,7 +24,7 @@ public class TFSectionFragment extends CheckerFragment
     String tfDetectResult = detectTF();
     String tfAvailable = checkTFAvailable();
     String sstAvailable = checkSSTAvailable();
-    
+
     result("tf-present",
            tfDetectResult != null,
            tfDetectResult);
@@ -41,7 +41,7 @@ public class TFSectionFragment extends CheckerFragment
       notAvailable("tf-sst-available");
     }
   }
-  
+
   private String checkTFAvailable()
   {
     File f = new File("/dev/tf_driver");
@@ -50,14 +50,14 @@ public class TFSectionFragment extends CheckerFragment
     else
       return null;
   }
-  
+
   private String detectTF()
   {
     StringBuffer sb = new StringBuffer();
-    
+
     if (new File("/dev/tf_driver").exists())
       sb.append("/dev/tf_driver exists");
-    
+
     if (sb.length() > 0)
       return sb.toString();
     else
@@ -70,7 +70,8 @@ public class TFSectionFragment extends CheckerFragment
     {
       System.loadLibrary("tf_crypto_sst");
       return "libtf_crypto_sst.so found";
-    } catch (Throwable e) {
+    } catch (Throwable e)
+    {
       Log.e(TAG, "cannot find tf_crypto_sst lib", e);
       return null;
     }

@@ -1,12 +1,9 @@
 package com.ifihada.teechecker;
 
-import java.io.File;
-
 import android.os.Bundle;
-import android.preference.CheckBoxPreference;
-import android.preference.EditTextPreference;
-import android.preference.PreferenceFragment;
 import android.util.Log;
+
+import java.io.File;
 
 public class MobicoreSectionFragment extends CheckerFragment
 {
@@ -26,7 +23,7 @@ public class MobicoreSectionFragment extends CheckerFragment
     String hasClientLib = findClientLib();
     String mobicoreAvailable = checkMobicoreAvailable();
     String mobicoreVersion = getVersionInfo();
-    
+
     result("mobicore-present",
            mobicoreDetectResult != null,
            mobicoreDetectResult);
@@ -37,7 +34,7 @@ public class MobicoreSectionFragment extends CheckerFragment
            hasClientLib != null,
            hasClientLib);
     result("mobicore-version", mobicoreVersion);
-    
+
     if (mobicoreDetectResult == null)
     {
       notAvailable("mobicore-available");
@@ -48,18 +45,18 @@ public class MobicoreSectionFragment extends CheckerFragment
     if (hasClientLib == null)
       notAvailable("mobicore-version");
   }
-  
+
   private String detectMobicore()
   {
     StringBuffer sb = new StringBuffer();
     int count = 0;
-    
+
     if (new File("/dev/mobicore").exists())
     {
       sb.append("/dev/mobicore");
       count++;
     }
-    
+
     if (new File("/dev/mobicore-user").exists())
     {
       if (count != 0)
@@ -67,7 +64,7 @@ public class MobicoreSectionFragment extends CheckerFragment
       sb.append("/dev/mobicore-user");
       count++;
     }
-    
+
     if (count == 0)
       return null;
     if (count == 1)
@@ -75,7 +72,7 @@ public class MobicoreSectionFragment extends CheckerFragment
     else
       return sb.toString() + " exist";
   }
-  
+
   private String checkMobicoreAvailable()
   {
     File f = new File("/dev/mobicore");
@@ -86,7 +83,7 @@ public class MobicoreSectionFragment extends CheckerFragment
       return "/dev/mobicore-user is read-write for us";
     return null;
   }
-  
+
   private String findClientLib()
   {
     try
@@ -96,12 +93,13 @@ public class MobicoreSectionFragment extends CheckerFragment
         return "libMcClient.so present. That's strange!";
       else
         return "libMcClient.so present";
-    } catch (UnsatisfiedLinkError e) {
+    } catch (UnsatisfiedLinkError e)
+    {
       Log.e(TAG, "cannot find McClient", e);
       return null;
     }
   }
-  
+
   private String getVersionInfo()
   {
     if (findClientLib() != null)

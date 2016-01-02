@@ -13,14 +13,14 @@ public class CheckerFragment extends PreferenceFragment
     cbp.setSummary(summary != null ? summary : "");
     CheckerResults.registerResult(key, checked);
   }
-  
+
   protected void result(String key, String result)
   {
     EditTextPreference etp = ((EditTextPreference) findPreference(key));
     etp.setSummary(result != null ? result : "");
     CheckerResults.registerResult(key, result);
   }
-  
+
   protected void notAvailable(String key)
   {
     findPreference(key).setEnabled(false);

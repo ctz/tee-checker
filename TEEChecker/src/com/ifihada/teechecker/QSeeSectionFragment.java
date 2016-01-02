@@ -22,28 +22,28 @@ public class QSeeSectionFragment extends CheckerFragment
   {
     String qseeDetectResult = detectQSEE();
     boolean qseeAvailable = checkQSEEAvailable();
-    
+
     result("qsee-present",
            qseeDetectResult != null,
            qseeDetectResult != null ? qseeDetectResult : "");
     result("qsee-available",
            qseeAvailable,
-           "");  
+           "");
   }
-  
+
   private boolean checkQSEEAvailable()
   {
     File f = new File("/dev/qseecom");
     return f.canRead() && f.canWrite();
   }
-  
+
   private String detectQSEE()
   {
     StringBuffer sb = new StringBuffer();
-    
+
     if (new File("/dev/qseecom").exists())
       sb.append("/dev/qseecom exists");
-    
+
     if (sb.length() > 0)
       return sb.toString();
     else

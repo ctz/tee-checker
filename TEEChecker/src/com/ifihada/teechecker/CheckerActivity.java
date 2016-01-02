@@ -1,16 +1,13 @@
 package com.ifihada.teechecker;
 
-import java.util.Locale;
-
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -95,7 +92,7 @@ public class CheckerActivity extends Activity implements ActionBar.TabListener
   public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction)
   {
   }
-  
+
   @Override
   public boolean onCreateOptionsMenu(Menu m)
   {
@@ -103,7 +100,7 @@ public class CheckerActivity extends Activity implements ActionBar.TabListener
     getMenuInflater().inflate(R.menu.main, m);
     return true;
   }
-  
+
   @Override
   public boolean onOptionsItemSelected(MenuItem mi)
   {
@@ -112,7 +109,7 @@ public class CheckerActivity extends Activity implements ActionBar.TabListener
       CheckerResults.send(this);
       return true;
     }
-    
+
     return false;
   }
 
@@ -142,7 +139,7 @@ public class CheckerActivity extends Activity implements ActionBar.TabListener
       case 3:
         return new TFSectionFragment();
       default:
-          return null;
+        return null;
       }
     }
 

@@ -1,17 +1,17 @@
 package com.ifihada.teechecker;
 
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
-
 import android.annotation.TargetApi;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
-import android.util.Log;
 import android.security.IKeystoreService;
 import android.security.KeyChain;
+import android.util.Log;
+
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PlatformSectionFragment extends CheckerFragment
 {
@@ -30,7 +30,7 @@ public class PlatformSectionFragment extends CheckerFragment
   {
     result("device", String.format("%s %s (%s branded)", Build.MANUFACTURER, Build.MODEL, Build.BRAND));
     result("version", String.format("%s (%s)", Build.VERSION.RELEASE, Build.DISPLAY));
-    
+
     result("keystore-supported", hasKeystoreApi(), "");
     result("keystore-keytypes", getUsableTypes());
     result("keystore-hw", hasKeystoreHardware(), "");
@@ -78,7 +78,7 @@ public class PlatformSectionFragment extends CheckerFragment
       if (isKeyTypeHardwareBacked(kt))
         usable.add(kt);
     }
-    
+
     if (usable.size() == 0)
       return "(none)";
 
@@ -97,7 +97,7 @@ public class PlatformSectionFragment extends CheckerFragment
       if (KeyChain.isKeyAlgorithmSupported(kt))
         usable.add(kt);
     }
-    
+
     if (usable.size() == 0)
       return "(none)";
 
@@ -124,23 +124,23 @@ public class PlatformSectionFragment extends CheckerFragment
 
     return false;
   }
-  
+
   private boolean isKeyTypeHardwareBacked(String kt)
   {
     IKeystoreService svc = getKeystore();
 
     if (svc == null)
       return false;
-    
+
     try
     {
       return svc.is_hardware_backed(kt) == NO_ERROR;
     } catch (RemoteException e)
     {
-      Log.wtf(TAG, "is_hardware_backed("+kt+") failed", e);
+      Log.wtf(TAG, "is_hardware_backed(" + kt + ") failed", e);
     } catch (NoSuchMethodError e)
     {
-      Log.wtf(TAG, "is_hardware_backed("+kt+") does not exist", e);
+      Log.wtf(TAG, "is_hardware_backed(" + kt + ") does not exist", e);
     }
 
     return false;
@@ -163,11 +163,11 @@ public class PlatformSectionFragment extends CheckerFragment
     {
       Log.wtf(TAG, "is_hardware_backed() does not exist", e);
     }
-    
+
     for (String kt : knownKeyTypes)
       if (isKeyTypeHardwareBacked(kt))
         return true;
-    
+
     return false;
   }
 }

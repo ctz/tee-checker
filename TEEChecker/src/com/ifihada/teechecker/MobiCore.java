@@ -7,6 +7,6 @@ public class MobiCore
     System.loadLibrary("mobicoreversion");
     return native_getVersion();
   }
-  
+
   public static native String native_getVersion();
 }

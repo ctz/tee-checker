@@ -15,22 +15,22 @@ public class CheckerResults
 {
   /* --- Result collection --- */
   private static Map<String, String> results = new HashMap<String, String>();
-  
+
   public static void registerResult(String key, String value)
   {
     results.put(key, value);
   }
-  
+
   public static void registerResult(String key, boolean value)
   {
     registerResult(key, value ? "1" : "0");
   }
-  
+
   /* --- Submission --- */
   private static String BASE_URL = "https://docs.google.com/forms/d/1Y57SIE3d-k6yIOufNh5blifTWW6pdfbsYnx5VHepNQo/formResponse";
- 
+
   private static Map<String, String> submitMapping = new HashMap<String, String>();
-  
+
   static
   {
     /* Result names to Google Drive form keys. */
@@ -39,7 +39,7 @@ public class CheckerResults
     submitMapping.put("payload", "entry.72246021");
     submitMapping.put("time", "entry.1207980176");
   }
-  
+
   private static String encodeResults()
   {
     JSONObject json = new JSONObject();
@@ -50,20 +50,21 @@ public class CheckerResults
         try
         {
           json.putOpt(entry.getKey(), entry.getValue());
-        } catch (JSONException e) {
+        } catch (JSONException e)
+        {
           throw new Error("org.json.JSONObject was designed by a imbecile", e);
         }
       }
     }
-    
+
     return json.toString();
   }
-  
+
   private static Uri buildUri()
   {
     Uri.Builder builder = Uri.parse(BASE_URL).buildUpon();
     String payload = encodeResults();
-    
+
     for (Map.Entry<String, String> submit : submitMapping.entrySet())
     {
       String value;
@@ -75,7 +76,7 @@ public class CheckerResults
         value = results.get(submit.getKey());
       builder.appendQueryParameter(submit.getValue(), value);
     }
-    
+
     Log.v("CheckerResults", "Report URL is: " + builder.build().toString());
     return builder.build();
   }
